@@ -78,7 +78,7 @@ CMD [ "npm","run","dev" ]
 
 # ********* (docker build -t suyashagrahari2121/docker_practice:01 . )************** ye cmd chlayengye image bnane ke liye 
 
-# fir ab hm is image ko push kr dengye ************ (ocker push suyashagrahari2121/docker_practice:01) **************
+# fir ab hm is image ko push kr dengye ************ (docker push suyashagrahari2121/docker_practice:01) **************
 # ab hmara docker image create ho jayega docker hubpr 
 
 
@@ -86,3 +86,44 @@ CMD [ "npm","run","dev" ]
 
 
 # AB HME JNHA APNA PROJECT USE KRNA H WNHA HM ISE PULL KR LENG
+
+
+
+# *********************** DOCKER VOLUME ***************************************
+# (docker voulme ls)
+# basically voulme ko hm ******** (-v myvolume:/myapp/)**************** ke dwarra create krte hain , volume conatiner ke bahar bnta h ise docker manage krta h aur ye hmesha rheta h chiaye hmara conatiner delete hi q na ho jaye 
+
+
+# DOCKER VOLUME - BIND METHOD - ************** (-v local path of server.txt{ye container ke bahar ka file h} : /myapp/server.txt/ {ye container ke andr ka file h }) AB HM IN DONO ko bind kr dengye jisse hm koi bhi changes bahar wale file  m krengye to wo container ke andr bhi changesg hongye 
+
+# *************** (.dockerignore) ***************************
+# isme hm jo file dalengye wo docker m images create hone ke time ignore ho jayega 
+
+
+# WORKING WITH API 
+# 1):-  isme hm container ke andr se container ke bahar ke api ko call krengye 
+# ab isme hm jb kisi api ko bahar se call krte hain to hm kuch chize import krte h jaise axios hua jo ki node m hota h aur requests hua jo ki python m hua ab inko bhi hme apne docker file m include krna padega to ab isme liye hm DOCKER FILE M ************ (RUN pip intall requests) *********** ya agr hm nodejs m hain to hm ************* (RUN npm install axios) ************  krengye 
+
+
+# 2) :- AB HM APNE CONATINER KE ANDR PYTHON PROGRAM YA NODEJS PROGRAM SE CONTAINER KE BAHAR DATA BASE KO ACCESS KRNA CHAHTE HAIN JISKE LIYE HME JNHA HMARA HOST -> ******** (localhost)******* h use change krke ************(host.docker.internal) ************** krna padega 
+
+# 3):-  AB HM KAYI SARE CONATINER KO AAPS M LINK KRENGYE 
+# for example hmare pass ek container h jisme ek m node js chl rha h aur dusre container m mongodb -> ab inko ek dusre se linke krne ke liye hm jb mongodb container ko run krte hain ya build krte hain to hm kuch ENVIROMENT VARIABLE(-env) SET KRTE HAIN -> like root-password , database name then usek baad hm aone nodejs ke program m root-password m aur database name m whi value dengye aur is baar host m hm mongodb container la ip address (docker isnpect conatiner_id) daal dengye now ab hmara program ready h mtlb hmare dono container ek dusre se linke hogye h  ----- > isme ek problem ye hain ki jb hmara mogodb ka containerrun krega uske baad hi hm nodejs wala container run kr skengye 
+
+# ab is problem ko hm network ke through solve kr skte hain --> hm kya krengye basically hm ek network create krengye then uske baad hm cintainer ko us network m incert kr dengye jisse unke bich connection easily bn jayega 
+
+
+
+# ***************************** NETWROK **************************
+# network ka command dekhne ke liye hm (docker network --help) chhlayengye
+
+# NETWORK BNNA EKE LIYE HM ***************** (DOCKER NETWORK CRETAE NETWORK_NAME) ********************
+
+# ab hm jis conatiner ko imse rkhna chhate hain use assign krngye -> docker run -it(interactive termianl) --rm(remove) -d(detach) -v(creating voulume) --name conatiner_name  -p(port binding) 3000(host):3000(container host) --network my-net(network name jisme is container ko insert krna h) image_id (container_id)
+
+# isko run krne ke baad an hme jis contianer ko is conatiner ke sath jodna h uske *****(host)***** m kewal docker coantiner ka name de dengye 
+
+# ******************************* DOCKER COMPOSE *********************************
+
+# DOCKER COMPAOSE ke help se hm multiple conatiner ko handle kr skte h ya jod skte hain ek dusre se ---> aur ye is liye aya q ki hme phele bhut badi command likhni padti thi --> like command m hme -it , -p , -d , -v , binding , --network , --env variable sb declare ya dena pdta tha jo ki bhut jada complex ho jata h 
+
