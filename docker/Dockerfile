@@ -55,6 +55,7 @@ CMD [ "npm","run","dev" ]
 # RUNNING CONATAINER DEKHNE KE LIYE : - (docker ps )
 
 # SBHI CONATINER KO DEKHNE KE LIYE : - (docker ps -a)
+# sabhi images ko dekhne ke liye :- (docker images)
 
 # DOCKER KO REMOVE KRNE KE LIYE :- (docker rm conatiner_id) ka use krte hain
 
